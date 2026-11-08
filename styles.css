@@ -1,0 +1,540 @@
+
+/* =========================================
+   CSS FERRIS WHEEL ANIMATION
+   Author: Stephen Oyugi
+   GitHub: Regalson001
+========================================= */
+
+/* 1. CSS CUSTOM PROPERTIES */
+:root {
+  --sky-color: #b9e6ff;
+  --ground-color: #7bc67b;
+
+  --wheel-color: #26364d;
+  --wheel-accent: #e5a83e;
+
+  --cabin-red: #f05d5e;
+  --cabin-blue: #3985d6;
+  --cabin-yellow: #f5c542;
+  --cabin-green: #35a879;
+  --cabin-purple: #8864c9;
+  --cabin-orange: #ed8a42;
+  --cabin-pink: #df75a8;
+  --cabin-teal: #36aaa5;
+
+  --wheel-size: 360px;
+  --cabin-distance: 170px;
+  --animation-speed: 20s;
+}
+
+/* 2. GLOBAL RESET */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 3. MAIN SCENE */
+.scene {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    180deg,
+    #8bd0f5 0%,
+    #d9f2ff 70%,
+    #ffffff 100%
+  );
+}
+
+/* 4. SKY */
+.sky {
+  position: absolute;
+  inset: 0 0 28%;
+
+  background: linear-gradient(
+    180deg,
+    #77c8f2,
+    #d5f1ff
+  );
+}
+
+.sun {
+  position: absolute;
+  top: 9%;
+  right: 15%;
+
+  width: 75px;
+  height: 75px;
+
+  border-radius: 50%;
+  background: #ffdc6b;
+
+  box-shadow: 0 0 45px #ffe99a;
+}
+
+.cloud {
+  position: absolute;
+  width: 110px;
+  height: 30px;
+
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.cloud::before {
+  width: 48px;
+  height: 48px;
+  left: 15px;
+  bottom: 8px;
+}
+
+.cloud::after {
+  width: 60px;
+  height: 60px;
+  right: 15px;
+  bottom: 5px;
+}
+
+.cloud-one {
+  top: 18%;
+  left: 12%;
+}
+
+.cloud-two {
+  top: 30%;
+  right: 12%;
+  transform: scale(0.8);
+}
+
+/* 5. FERRIS WHEEL CONTAINER */
+.ferris-wheel {
+  position: relative;
+  z-index: 2;
+
+  width: var(--wheel-size);
+  height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 6. ROTATING WHEEL */
+.wheel {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+
+  transform: translateX(-50%);
+  transform-origin: center center;
+
+  animation: wheel-rotation var(--animation-speed) linear infinite;
+}
+
+/* 7. WHEEL RIMS */
+.wheel-rim,
+.inner-rim {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+}
+
+.wheel-rim {
+  border: 10px solid var(--wheel-color);
+  box-shadow: 0 0 0 5px var(--wheel-accent);
+}
+
+.inner-rim {
+  top: 15px;
+  left: 15px;
+
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+
+  border: 3px solid rgba(38, 54, 77, 0.55);
+}
+
+/* 8. WHEEL SPOKES */
+.spokes {
+  position: absolute;
+  inset: 0;
+}
+
+.spoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 4px;
+  height: 50%;
+
+  background: var(--wheel-color);
+
+  transform-origin: top center;
+  transform: rotate(var(--angle));
+}
+
+/* 9. CENTER AXLE */
+.axle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 32px;
+  height: 32px;
+
+  transform: translate(-50%, -50%);
+
+  border: 5px solid var(--wheel-color);
+  border-radius: 50%;
+
+  background: var(--wheel-accent);
+  z-index: 5;
+}
+
+/* 10. CABIN POSITIONS */
+.cabins {
+  position: absolute;
+  inset: 0;
+}
+
+.cabin-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 1px;
+  height: 1px;
+
+  transform: rotate(var(--angle))
+    translateY(calc(-1 * var(--cabin-distance)));
+}
+
+/* 11. CABIN DESIGN */
+.cabin {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 48px;
+  height: 62px;
+
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+
+  border: 3px solid var(--wheel-color);
+  border-radius: 8px 8px 12px 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  animation: cabin-upright var(--animation-speed) linear infinite;
+}
+
+/* 12. CABIN ROOFS */
+.cabin-roof {
+  width: 55px;
+  height: 9px;
+
+  margin-top: -8px;
+
+  border: 2px solid var(--wheel-color);
+  border-radius: 6px 6px 2px 2px;
+
+  background: var(--wheel-accent);
+}
+
+/* 13. CABIN WINDOWS */
+.cabin-window {
+  width: 28px;
+  height: 27px;
+
+  margin-top: 7px;
+
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* 14. CABIN BASE */
+.cabin-base {
+  width: 100%;
+  height: 8px;
+
+  margin-top: auto;
+
+  border-radius: 0 0 7px 7px;
+
+  background: var(--wheel-color);
+}
+
+/* 15. CABIN COLORS */
+.cabin-red {
+  background-color: var(--cabin-red);
+}
+
+.cabin-blue {
+  background-color: var(--cabin-blue);
+}
+
+.cabin-yellow {
+  background-color: var(--cabin-yellow);
+}
+
+.cabin-green {
+  background-color: var(--cabin-green);
+}
+
+.cabin-purple {
+  background-color: var(--cabin-purple);
+}
+
+.cabin-orange {
+  background-color: var(--cabin-orange);
+}
+
+.cabin-pink {
+  background-color: var(--cabin-pink);
+}
+
+.cabin-teal {
+  background-color: var(--cabin-teal);
+}
+
+/* 16. FERRIS WHEEL SUPPORT */
+.support-structure {
+  position: absolute;
+  bottom: 0;
+
+  width: 260px;
+  height: 220px;
+
+  z-index: -1;
+}
+
+.support {
+  position: absolute;
+  bottom: 0;
+
+  width: 12px;
+  height: 220px;
+
+  background: var(--wheel-color);
+  transform-origin: bottom center;
+}
+
+.support-left {
+  left: 35%;
+  transform: rotate(19deg);
+}
+
+.support-right {
+  right: 35%;
+  transform: rotate(-19deg);
+}
+
+.support-crossbar {
+  position: absolute;
+  bottom: 75px;
+  left: 50%;
+
+  width: 170px;
+  height: 9px;
+
+  transform: translateX(-50%);
+
+  background: var(--wheel-color);
+}
+
+.support-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+
+  width: 260px;
+  height: 14px;
+
+  transform: translateX(-50%);
+
+  border-radius: 5px;
+  background: var(--wheel-color);
+}
+
+/* 17. GROUND */
+.ground {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 28%;
+
+  background: linear-gradient(
+    180deg,
+    #8ed18e,
+    var(--ground-color)
+  );
+}
+
+.ground-line {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 8px;
+
+  background: #559e59;
+}
+
+/* 18. SCENE TITLE */
+.scene-title {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+
+  width: 100%;
+  z-index: 3;
+
+  text-align: center;
+  color: #26364d;
+}
+
+.scene-title h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.scene-title p {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   19. CSS ANIMATIONS
+========================================= */
+
+/* Rotates the complete Ferris wheel */
+@keyframes wheel-rotation {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+/* Keeps each cabin vertically upright */
+@keyframes cabin-upright {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(calc(-1 * var(--angle)));
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(calc(-1 * var(--angle) - 360deg));
+  }
+}
+
+/* =========================================
+   20. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+  :root {
+    --wheel-size: 270px;
+    --cabin-distance: 127px;
+    --animation-speed: 24s;
+  }
+
+  .ferris-wheel {
+    height: 390px;
+  }
+
+  .cabin {
+    width: 38px;
+    height: 52px;
+  }
+
+  .cabin-roof {
+    width: 44px;
+  }
+
+  .cabin-window {
+    width: 23px;
+    height: 22px;
+  }
+
+  .support-structure {
+    width: 210px;
+    height: 160px;
+  }
+
+  .support {
+    height: 160px;
+  }
+
+  .support-base {
+    width: 210px;
+  }
+
+  .support-crossbar {
+    width: 140px;
+  }
+
+  .scene-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .sun {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel,
+  .cabin {
+    animation-play-state: paused;
+  }
+}
