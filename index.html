@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="A colorful animated Ferris wheel illustration built with pure HTML5 and CSS3."
+  >
+
+  <meta name="author" content="Stephen Oyugi">
+
+  <title>CSS Ferris Wheel | Animated Illustration</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <main class="scene">
+
+    <!-- SKY BACKGROUND -->
+    <div class="sky">
+      <div class="sun"></div>
+      <div class="cloud cloud-one"></div>
+      <div class="cloud cloud-two"></div>
+    </div>
+
+    <!-- FERRIS WHEEL -->
+    <section class="ferris-wheel" aria-label="Animated Ferris wheel">
+
+      <!-- ROTATING WHEEL -->
+      <div class="wheel">
+
+        <!-- OUTER RIM -->
+        <div class="wheel-rim"></div>
+
+        <!-- INNER RIM -->
+        <div class="inner-rim"></div>
+
+        <!-- WHEEL SPOKES -->
+        <div class="spokes">
+          <span class="spoke" style="--angle: 0deg;"></span>
+          <span class="spoke" style="--angle: 45deg;"></span>
+          <span class="spoke" style="--angle: 90deg;"></span>
+          <span class="spoke" style="--angle: 135deg;"></span>
+        </div>
+
+        <!-- CENTER AXLE -->
+        <div class="axle"></div>
+
+        <!-- FERRIS WHEEL CABINS -->
+        <div class="cabins">
+
+          <div class="cabin-position" style="--angle: 0deg;">
+            <div class="cabin cabin-red">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 45deg;">
+            <div class="cabin cabin-blue">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 90deg;">
+            <div class="cabin cabin-yellow">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 135deg;">
+            <div class="cabin cabin-green">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 180deg;">
+            <div class="cabin cabin-purple">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 225deg;">
+            <div class="cabin cabin-orange">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 270deg;">
+            <div class="cabin cabin-pink">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+          <div class="cabin-position" style="--angle: 315deg;">
+            <div class="cabin cabin-teal">
+              <div class="cabin-roof"></div>
+              <div class="cabin-window"></div>
+              <div class="cabin-base"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SUPPORT STRUCTURE -->
+      <div class="support-structure">
+        <div class="support support-left"></div>
+        <div class="support support-right"></div>
+        <div class="support-crossbar"></div>
+        <div class="support-base"></div>
+      </div>
+
+    </section>
+
+    <!-- GROUND -->
+    <div class="ground">
+      <div class="ground-line"></div>
+    </div>
+
+    <!-- PROJECT TITLE -->
+    <header class="scene-title">
+      <h1>Ferris Wheel</h1>
+      <p>Pure CSS Animation</p>
+    </header>
+
+  </main>
+
+</body>
+</html>
